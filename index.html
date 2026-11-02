@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Hsun & Cassie 婚禮邀請函 | Wedding Invitation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond 與 Noto Serif TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        morandi: {
+                            warm: '#d4a373',      /* Morandi 暖陽主色 */
+                            warmDark: '#b88655',  /* 深暖陽色 */
+                            warmLight: '#faedcd', /* 柔光暖米 */
+                            sage: '#8da399',      /* Morandi 鼠尾草灰綠 */
+                            sageDark: '#6b8278',  /* 深鼠尾草綠 */
+                            paper: '#fcfbf9',     /* 微光白卡片底色 */
+                            bg: '#f4efe8',        /* 溫潤燕麥奶茶背景 */
+                            ink: '#463f3a',       /* 典雅深可可字色 */
+                            taupe: '#9c8f80',     /* 莫蘭迪灰褐 */
+                            heart: '#e29595'      /* 珊瑚粉愛心 */
+                        }
+                    },
+                    fontFamily: {
+                        eng: ['"Cormorant Garamond"', 'serif'],
+                        chi: ['"Noto Serif TC"', 'serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 12px 32px -6px rgba(140, 122, 107, 0.14)',
+                        'card-glow': '0 10px 28px -4px rgba(212, 163, 115, 0.18), 0 4px 12px -2px rgba(255, 255, 255, 0.9) inset',
+                        'glow': '0 8px 24px rgba(212, 163, 115, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+            touch-action: pan-y;
+            overscroll-behavior-x: none;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: #f4efe8;
+            color: #463f3a;
+            position: relative;
+        }
+        /* 防止 GitHub Pages / Markdown 預設樣式干擾標題與圖片 */
+        .markdown-body h1, .markdown-body h2, h1, h2 {
+            border-bottom: none !important;
+        }
+        .markdown-body img, img {
+            max-width: 100% !important;
+            box-sizing: border-box;
+        }
+        /* 白色微光卡片特效 */
+        .shimmer-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(252, 250, 246, 0.88) 100%);
+            box-shadow: 0 12px 30px -6px rgba(156, 143, 128, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.95) inset;
+        }
+        /* 照片輕微羽化柔邊效果 */
+        .soft-edge-photo {
+            -webkit-mask-image: radial-gradient(ellipse 98% 97% at 50% 50%, #000 84%, rgba(0,0,0,0.65) 94%, transparent 100%);
+            mask-image: radial-gradient(ellipse 98% 97% at 50% 50%, #000 84%, rgba(0,0,0,0.65) 94%, transparent 100%);
+        }
+        /* 摺疊面板平滑動畫 */
+        .accordion-content {
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.open {
+            max-height: 600px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-morandi-bg text-morandi-ink antialiased selection:bg-morandi-warm/30">
+
+    <!-- 1. 導覽與美學：頂端固定的毛玻璃質感導航列 -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#f4efe8]/90 backdrop-blur-md border-b border-[#e5dec9]/70 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 h-14 sm:h-20 flex items-center justify-between gap-2">
+            <!-- 左上角：只顯示 Wedding Invitation (手機版強制單行不折行) -->
+            <a href="#" class="flex items-center shrink-0">
+                <span class="font-eng text-sm sm:text-2xl font-medium tracking-[0.14em] sm:tracking-[0.22em] text-morandi-ink uppercase whitespace-nowrap">Wedding Invitation</span>
+            </a>
+            
+            <!-- 電腦版導航連結 -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm tracking-[0.18em] font-light whitespace-nowrap">
+                <a href="#about" class="hover:text-morandi-warm transition duration-200">關於我們</a>
+                <a href="#details" class="hover:text-morandi-warm transition duration-200">婚禮詳情</a>
+                <a href="#transport" class="hover:text-morandi-warm transition duration-200">交通指引</a>
+                <a href="#rsvp" class="px-6 py-2.5 rounded-full bg-morandi-warm text-white hover:bg-morandi-warmDark transition duration-300 shadow-sm tracking-[0.2em] text-xs font-medium">出席回函</a>
+            </nav>
+
+            <!-- 手機版精簡導航 (全部強制單行 whitespace-nowrap) -->
+            <div class="flex md:hidden items-center space-x-2.5 text-xs tracking-wider shrink-0 whitespace-nowrap">
+                <a href="#about" class="text-morandi-ink/85 hover:text-morandi-warm whitespace-nowrap">關於</a>
+                <a href="#details" class="text-morandi-ink/85 hover:text-morandi-warm whitespace-nowrap">詳情</a>
+                <a href="#transport" class="text-morandi-ink/85 hover:text-morandi-warm whitespace-nowrap">交通</a>
+                <a href="#rsvp" class="px-3 py-1.5 rounded-full bg-morandi-warm text-white text-[11px] font-medium shadow-sm whitespace-nowrap">出席回函</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. 首頁封面背景 (手機版滿版寬度最佳化呈現，完整顯示人像與雪山湖景；電腦版全螢幕) -->
+    <section class="relative w-screen max-w-full pt-14 sm:pt-0 sm:h-screen overflow-hidden bg-morandi-bg m-0 p-0">
+        <img src="https://i.postimg.cc/ydK7ZqFX/825-KHC-8032.jpg" 
+             alt="Hsun & Cassie Wedding Cover" 
+             fetchpriority="high"
+             class="w-full h-auto sm:h-full object-contain sm:object-cover object-center block m-0">
+        <!-- 底部柔和往下滑動提示 -->
+        <a href="#about" class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center text-white/90 hover:text-white transition drop-shadow">
+            <span class="font-eng text-xs tracking-[0.35em] uppercase mb-2">Scroll</span>
+            <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </a>
+    </section>
+
+    <!-- 關於我們：雙語姓名、邀請序言、中間嵌入寫真圖、藝術倒數計時器 -->
+    <section id="about" class="py-12 sm:py-28 px-4 sm:px-6 max-w-4xl mx-auto">
+        
+        <!-- 新人雙語姓名與真摯邀請序言 (隨視窗大小自動最佳化比例並強制完美置中) -->
+        <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-20 flex flex-col items-center justify-center">
+            <h1 class="w-full text-center font-normal text-morandi-ink mb-3 whitespace-nowrap border-0 flex items-baseline justify-center gap-x-1.5 sm:gap-x-2.5"
+                style="font-size: clamp(1.15rem, 4.6vw, 2.25rem); letter-spacing: 0.06em; border-bottom: none !important;">
+                <span>彭建勛</span>
+                <span class="font-eng font-medium" style="font-size: 1.12em;">Hsun</span>
+                <span class="font-eng font-normal mx-0.5" style="font-size: 1.05em;">&amp;</span>
+                <span>陳乃瑄</span>
+                <span class="font-eng font-medium" style="font-size: 1.12em;">Cassie</span>
+            </h1>
+            <p class="w-full text-center font-eng text-morandi-taupe uppercase mb-5 sm:mb-6 whitespace-nowrap"
+               style="font-size: clamp(0.62rem, 2.5vw, 0.875rem); letter-spacing: 0.18em;">
+                ONE LOVE, TWO SOULS, ENDLESS TOMORROWS.
+            </p>
+            <p class="w-full text-center font-eng text-2xl sm:text-4xl text-[#5e5045] tracking-[0.15em] mb-7 sm:mb-10">
+                2027.02.20
+            </p>
+            <div class="w-full text-center space-y-3.5 sm:space-y-4 text-[13px] sm:text-base text-[#5a524c] leading-loose tracking-wider font-light">
+                <p>人生的旅程中，因為有你們的愛與陪伴，</p>
+                <p>讓我們成為更好的人。</p>
+                <p>如今，我們決定手牽著手，邁向人生的下一個階段。</p>
+                <p>在這個特別的日子裡，最希望能有您在現場，</p>
+                <p>給予我們最真摯的祝福與見證。</p>
+            </div>
+            <div class="w-12 h-[1px] bg-morandi-taupe/40 mx-auto mt-10 sm:mt-12"></div>
+        </div>
+
+        <!-- 中間嵌入圖網址：https://i.postimg.cc/7YRDNJ3Y/448-KHC-6606.jpg (移除白邊，改為輕微柔邊) -->
+        <div class="max-w-3xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-soft">
+            <img src="https://i.postimg.cc/7YRDNJ3Y/448-KHC-6606.jpg" 
+                 alt="Hsun & Cassie Portrait" 
+                 class="w-full h-auto object-cover block rounded-2xl soft-edge-photo">
+        </div>
+
+        <!-- 2. 計時器視覺 (極重要)：獨立白色微光卡片 + 柔和陰影 + 數字與單位間以優雅垂直細線分隔 -->
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="font-eng text-xs sm:text-sm uppercase tracking-[0.35em] text-morandi-taupe mb-6">
+                Counting Down To Our Forever
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-5">
+                <!-- 天數卡片 -->
+                <div class="shimmer-card rounded-2xl px-4 py-5 sm:px-5 sm:py-6 flex items-center justify-center space-x-3.5 sm:space-x-4 transition transform hover:-translate-y-0.5">
+                    <span id="days" class="font-eng text-4xl sm:text-5xl font-medium text-morandi-warmDark tracking-tight">000</span>
+                    <!-- 數字與單位間優雅的垂直細線分隔 -->
+                    <span class="h-9 w-[1px] bg-gradient-to-b from-transparent via-morandi-warm/60 to-transparent"></span>
+                    <div class="flex flex-col items-start text-left">
+                        <span class="font-eng text-[10px] sm:text-xs uppercase tracking-[0.2em] text-morandi-taupe">Days</span>
+                        <span class="text-xs sm:text-sm text-morandi-ink font-medium mt-0.5">天</span>
+                    </div>
+                </div>
+
+                <!-- 小時卡片 -->
+                <div class="shimmer-card rounded-2xl px-4 py-5 sm:px-5 sm:py-6 flex items-center justify-center space-x-3.5 sm:space-x-4 transition transform hover:-translate-y-0.5">
+                    <span id="hours" class="font-eng text-4xl sm:text-5xl font-medium text-morandi-warmDark tracking-tight">00</span>
+                    <!-- 數字與單位間優雅的垂直細線分隔 -->
+                    <span class="h-9 w-[1px] bg-gradient-to-b from-transparent via-morandi-warm/60 to-transparent"></span>
+                    <div class="flex flex-col items-start text-left">
+                        <span class="font-eng text-[10px] sm:text-xs uppercase tracking-[0.2em] text-morandi-taupe">Hours</span>
+                        <span class="text-xs sm:text-sm text-morandi-ink font-medium mt-0.5">時</span>
+                    </div>
+                </div>
+
+                <!-- 分鐘卡片 -->
+                <div class="shimmer-card rounded-2xl px-4 py-5 sm:px-5 sm:py-6 flex items-center justify-center space-x-3.5 sm:space-x-4 transition transform hover:-translate-y-0.5">
+                    <span id="minutes" class="font-eng text-4xl sm:text-5xl font-medium text-morandi-warmDark tracking-tight">00</span>
+                    <!-- 數字與單位間優雅的垂直細線分隔 -->
+                    <span class="h-9 w-[1px] bg-gradient-to-b from-transparent via-morandi-warm/60 to-transparent"></span>
+                    <div class="flex flex-col items-start text-left">
+                        <span class="font-eng text-[10px] sm:text-xs uppercase tracking-[0.2em] text-morandi-taupe">Mins</span>
+                        <span class="text-xs sm:text-sm text-morandi-ink font-medium mt-0.5">分</span>
+                    </div>
+                </div>
+
+                <!-- 秒數卡片 -->
+                <div class="shimmer-card rounded-2xl px-4 py-5 sm:px-5 sm:py-6 flex items-center justify-center space-x-3.5 sm:space-x-4 transition transform hover:-translate-y-0.5">
+                    <span id="seconds" class="font-eng text-4xl sm:text-5xl font-medium text-morandi-warmDark tracking-tight">00</span>
+                    <!-- 數字與單位間優雅的垂直細線分隔 -->
+                    <span class="h-9 w-[1px] bg-gradient-to-b from-transparent via-morandi-warm/60 to-transparent"></span>
+                    <div class="flex flex-col items-start text-left">
+                        <span class="font-eng text-[10px] sm:text-xs uppercase tracking-[0.2em] text-morandi-taupe">Secs</span>
+                        <span class="text-xs sm:text-sm text-morandi-ink font-medium mt-0.5">秒</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 婚禮詳情：2027年2月專屬愛心月曆 + 元宵團聚 + 手繪風線條流程圖示 + 著裝風格建議 V-Card -->
+    <section id="details" class="py-16 sm:py-24 px-5 sm:px-6 max-w-3xl mx-auto">
+        
+        <!-- 2027年2月 專屬愛心月曆 -->
+        <div class="max-w-md mx-auto bg-[#f6f1ea] border border-[#9c8f80]/60 p-7 sm:p-10 mb-14 shadow-soft">
+            <div class="flex items-baseline justify-between mb-6 px-2">
+                <span class="font-eng text-2xl sm:text-3xl tracking-widest text-[#7f7367]">2027</span>
+                <div class="text-[#7f7367]">
+                    <span class="font-eng text-5xl sm:text-6xl font-normal">2</span>
+                    <span class="text-xl sm:text-2xl ml-1">月</span>
+                </div>
+            </div>
+
+            <!-- 灰褐色膠囊星期列 -->
+            <div class="grid grid-cols-7 bg-[#968c83] text-white rounded-full py-1.5 px-2 text-center text-xs sm:text-sm mb-5 tracking-widest">
+                <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+            </div>
+
+            <!-- 2027年2月 日期格 (2/1 為週一) -->
+            <div class="grid grid-cols-7 gap-y-4 text-center font-eng text-base sm:text-lg text-[#5a524c] items-center">
+                <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div>
+                <div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div>
+                <div>15</div><div>16</div><div>17</div><div>18</div><div>19</div>
+                <!-- 20號 浪漫愛心標記 -->
+                <div class="relative flex items-center justify-center">
+                    <svg class="w-10 h-10 text-morandi-heart fill-current drop-shadow-sm" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <span class="absolute text-white text-sm font-semibold tracking-tighter pb-0.5">20</span>
+                </div>
+                <div>21</div>
+                <div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div>
+            </div>
+        </div>
+
+        <!-- 暖心引言 -->
+        <div class="text-center space-y-3 mb-14">
+            <p class="text-sm sm:text-base text-[#5a524c] tracking-widest leading-relaxed font-light">
+                正月十五這一天，不只是元宵節，<br class="sm:hidden">更是一場想與你好好相聚的暖心盛會。
+            </p>
+        </div>
+
+        <!-- 手繪風精緻線條流程圖示 (花拱門證婚 11:00 — 蝴蝶結座椅入席 11:30 — 蝴蝶結刀叉午宴 12:30) -->
+        <div class="flex items-center justify-between max-w-xl mx-auto mb-16 px-2">
+            <!-- 11:00 浪漫證婚 (手繪花拱門) -->
+            <div class="flex flex-col items-center text-center w-24 sm:w-28">
+                <svg class="w-14 h-14 sm:w-16 sm:h-16 text-[#9e9182] mb-3" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 14 H52 M16 14 V54 M48 14 V54" />
+                    <path d="M16 26 Q32 22 48 26" />
+                    <path d="M16 26 C22 36 18 46 14 54 M48 26 C42 36 46 46 50 54" />
+                    <circle cx="20" cy="14" r="3" fill="#f4efe8"/><circle cx="32" cy="13" r="3.5" fill="#f4efe8"/><circle cx="44" cy="14" r="3" fill="#f4efe8"/>
+                    <path d="M12 54 H22 M42 54 H52" />
+                </svg>
+                <span class="text-xs sm:text-sm tracking-widest text-morandi-ink font-medium">浪漫證婚</span>
+                <span class="font-eng text-sm sm:text-base text-[#6e645b] mt-0.5">11:00</span>
+            </div>
+
+            <!-- 虛線分隔 -->
+            <div class="flex-1 border-t border-dashed border-[#9e9182]/70 mx-1 sm:mx-3 -mt-8"></div>
+
+            <!-- 11:30 賓客入席 (手繪蝴蝶結禮椅) -->
+            <div class="flex flex-col items-center text-center w-24 sm:w-28">
+                <svg class="w-14 h-14 sm:w-16 sm:h-16 text-[#9e9182] mb-3" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 14 C22 10 42 10 42 14 L40 36 H24 L22 14 Z" />
+                    <path d="M20 36 H44 L46 42 H18 L20 36 Z" />
+                    <path d="M21 42 L19 54 M43 42 L45 54 M26 42 L25 52 M38 42 L39 52" />
+                    <!-- 椅背蝴蝶結 -->
+                    <path d="M32 13 C27 9 25 15 32 14 C39 15 37 9 32 13 Z" />
+                    <path d="M31 14 L27 23 M33 14 L37 23" />
+                </svg>
+                <span class="text-xs sm:text-sm tracking-widest text-morandi-ink font-medium">賓客入席</span>
+                <span class="font-eng text-sm sm:text-base text-[#6e645b] mt-0.5">11:30</span>
+            </div>
+
+            <!-- 虛線分隔 -->
+            <div class="flex-1 border-t border-dashed border-[#9e9182]/70 mx-1 sm:mx-3 -mt-8"></div>
+
+            <!-- 12:30 午宴開席 (手繪蝴蝶結刀叉) -->
+            <div class="flex flex-col items-center text-center w-24 sm:w-28">
+                <svg class="w-14 h-14 sm:w-16 sm:h-16 text-[#9e9182] mb-3" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- 叉子 -->
+                    <path d="M25 12 V24 C25 27 31 27 31 24 V12 M28 12 V52" />
+                    <!-- 餐刀 -->
+                    <path d="M37 12 C42 16 42 28 37 30 V52" />
+                    <!-- 緞帶蝴蝶結 -->
+                    <path d="M32 34 C24 29 24 39 32 35 C40 39 40 29 32 34 Z" />
+                    <path d="M31 35 L25 44 M33 35 L39 44" />
+                </svg>
+                <span class="text-xs sm:text-sm tracking-widest text-morandi-ink font-medium">午宴開席</span>
+                <span class="font-eng text-sm sm:text-base text-[#6e645b] mt-0.5">12:30</span>
+            </div>
+        </div>
+
+        <!-- 垂直 V-Card 設計：著裝風格建議 Dress Code -->
+        <div class="bg-morandi-paper rounded-2xl p-6 sm:p-8 shadow-soft border-l-4 border-[#9c8f80] border-t border-r border-b border-white/80">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-[#f4efe8] flex items-center justify-center text-morandi-ink">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-medium tracking-wider text-morandi-ink">
+                        著裝風格建議 <span class="font-eng text-lg sm:text-xl font-normal">Dress Code</span>
+                    </h3>
+                </div>
+                <span class="text-xs px-3.5 py-1 rounded-full bg-morandi-warmLight/70 text-[#8c6239] font-medium tracking-wider">
+                    暖色系、深色系即可(僅建議不強求以您舒適即可)
+                </span>
+            </div>
+            <!-- 色票圓點 -->
+            <div class="flex items-center space-x-3 mt-4 pl-0 sm:pl-13">
+                <span class="w-6 h-6 rounded-full bg-[#fcfbf7] border border-stone-300 shadow-inner" title="暖白"></span>
+                <span class="w-6 h-6 rounded-full bg-[#d6d6d6] border border-white shadow-sm" title="淺灰"></span>
+                <span class="w-6 h-6 rounded-full bg-[#e6ccb2] border border-white shadow-sm" title="米杏奶茶"></span>
+                <span class="w-6 h-6 rounded-full bg-[#d4a373] border border-white shadow-sm" title="暖陽駝金"></span>
+                <span class="w-6 h-6 rounded-full bg-[#584738] border border-white shadow-sm" title="可可深棕"></span>
+                <span class="w-6 h-6 rounded-full bg-[#2b303a] border border-white shadow-sm" title="典雅深色"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6 & 7. 婚宴地點、內嵌地圖與摺疊式交通指引 (Accordion + 手機版關鍵字絕不斷行) -->
+    <section id="transport" class="py-16 sm:py-24 px-5 sm:px-6 max-w-3xl mx-auto">
+        <!-- 飯店標題與防斷行地址 -->
+        <div class="text-center mb-8 space-y-2">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-normal tracking-[0.16em] text-morandi-ink whitespace-nowrap">
+                大溪笠復威斯汀度假酒店
+            </h2>
+            <p class="text-xs sm:text-base text-[#5a524c] tracking-wider whitespace-nowrap overflow-x-auto py-1">
+                335桃園市大溪區永福里日新路166號
+            </p>
+        </div>
+
+        <!-- 內嵌互動式 Google 地圖 -->
+        <div class="w-full h-72 sm:h-96 rounded-2xl overflow-hidden shadow-soft border-4 border-white mb-6">
+            <iframe 
+                title="大溪笠復威斯汀度假酒店地圖"
+                src="https://maps.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%A4%A7%E6%BA%AA%E7%AC%A0%E5%BE%A9%E5%A8%81%E6%96%AF%E6%B1%80%E5%BA%A6%E5%81%87%E9%85%92%E5%BA%97&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                class="w-full h-full border-0" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <div class="text-center mb-10">
+            <a href="https://maps.google.com/?q=335桃園市大溪區永福里日新路166號" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-6 py-2.5 rounded-full bg-white text-morandi-ink text-xs sm:text-sm tracking-widest shadow-sm hover:bg-morandi-warm hover:text-white transition duration-300 border border-stone-200">
+                <span>開啟 Google Maps 導航</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+        </div>
+
+        <!-- 7. 互動細節：摺疊式面板 (Accordion) 詳細交通資訊，所有站名與地標強制 whitespace-nowrap -->
+        <div class="space-y-3.5">
+            <!-- 面板 1：自行開車 -->
+            <div class="bg-morandi-paper rounded-2xl shadow-soft border border-white overflow-hidden">
+                <button type="button" onclick="toggleAccordion('acc-drive')" class="w-full px-5 sm:px-7 py-4 sm:py-5 flex items-center justify-between text-left focus:outline-none hover:bg-white/60 transition">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 rounded-full bg-morandi-warm/15 text-morandi-warmDark flex items-center justify-center text-sm">🚗</span>
+                        <span class="text-sm sm:text-base font-medium tracking-wider text-morandi-ink">自行開車路線指引</span>
+                    </div>
+                    <svg id="icon-acc-drive" class="w-5 h-5 text-morandi-taupe transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="acc-drive" class="accordion-content">
+                    <div class="px-5 sm:px-7 pb-5 pt-3 text-xs sm:text-sm text-[#5a524c] space-y-4 border-t border-stone-100 leading-relaxed">
+                        <div class="flex items-start space-x-3">
+                            <span class="inline-flex flex-col items-center justify-center px-2.5 py-1.5 rounded-xl bg-[#a47e68] text-white text-xs font-medium shrink-0 leading-tight tracking-wider shadow-sm">
+                                <span>國3</span>
+                                <span>北上</span>
+                            </span>
+                            <div class="space-y-1">
+                                <p>• <span class="whitespace-nowrap font-medium text-morandi-ink">國道3號</span> 前往 <span class="whitespace-nowrap font-medium text-morandi-ink">62大溪出口</span> 下交流道</p>
+                                <p>• 於 <span class="whitespace-nowrap font-medium text-morandi-ink">員林路二段</span> 左轉 ／ 於 <span class="whitespace-nowrap font-medium text-morandi-ink">介壽路</span> 右轉 ／ 往 <span class="whitespace-nowrap font-medium text-morandi-ink">台3線</span> 行駛</p>
+                                <p>• 沿左側左轉進入 <span class="whitespace-nowrap font-medium text-morandi-ink">武嶺橋</span> ／ 於 <span class="whitespace-nowrap font-medium text-morandi-ink">信義路</span> 向左轉 ／ 往 <span class="whitespace-nowrap font-medium text-morandi-ink">台3線</span> 行駛</p>
+                                <p>• 於 <span class="whitespace-nowrap font-medium text-morandi-ink">日新路</span> 向右轉即可抵達</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 pt-3 border-t border-stone-100">
+                            <span class="inline-flex flex-col items-center justify-center px-2.5 py-1.5 rounded-xl bg-[#d6c267] text-morandi-ink text-xs font-medium shrink-0 leading-tight tracking-wider shadow-sm">
+                                <span>國3</span>
+                                <span>南下</span>
+                            </span>
+                            <div class="space-y-1">
+                                <p>• <span class="whitespace-nowrap font-medium text-morandi-ink">國道3號</span> 前往 <span class="whitespace-nowrap font-medium text-morandi-ink">50B三峽出口</span> 下交流道</p>
+                                <p>• 沿 <span class="whitespace-nowrap font-medium text-morandi-ink">110縣道</span> 往 <span class="whitespace-nowrap font-medium text-morandi-ink">中正路一段</span></p>
+                                <p>• 繼續直行走 <span class="whitespace-nowrap font-medium text-morandi-ink">中正路二段</span> ／ 往 <span class="whitespace-nowrap font-medium text-morandi-ink">台3線</span> 行駛</p>
+                                <p>• 於 <span class="whitespace-nowrap font-medium text-morandi-ink">日新路</span> 向左轉即可抵達</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 面板 2：高鐵 / 捷運 / 大眾運輸 -->
+            <div class="bg-morandi-paper rounded-2xl shadow-soft border border-white overflow-hidden">
+                <button type="button" onclick="toggleAccordion('acc-transit')" class="w-full px-5 sm:px-7 py-4 sm:py-5 flex items-center justify-between text-left focus:outline-none hover:bg-white/60 transition">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 rounded-full bg-morandi-sage/20 text-morandi-sageDark flex items-center justify-center text-sm">🚄</span>
+                        <span class="text-sm sm:text-base font-medium tracking-wider text-morandi-ink">高鐵 / 捷運 / 台鐵轉乘資訊</span>
+                    </div>
+                    <svg id="icon-acc-transit" class="w-5 h-5 text-morandi-taupe transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="acc-transit" class="accordion-content">
+                    <div class="px-5 sm:px-7 pb-5 pt-2 text-xs sm:text-sm text-[#5a524c] space-y-2.5 border-t border-stone-100 leading-relaxed">
+                        <p>• <strong>台灣高鐵／機場捷運：</strong>搭乘至 <span class="whitespace-nowrap font-medium text-morandi-ink">高鐵桃園站</span>（或 <span class="whitespace-nowrap font-medium text-morandi-ink">桃園機場捷運A18高鐵桃園站</span>），轉乘計程車車程約 35–40 分鐘直達飯店。</p>
+                        <p>• <strong>台北捷運轉乘公車：</strong>搭乘板南線至 <span class="whitespace-nowrap font-medium text-morandi-ink">捷運永寧站</span>（<span class="whitespace-nowrap font-medium text-morandi-ink">4號出口</span>），轉乘 <span class="whitespace-nowrap font-medium text-morandi-ink">710公車</span> 至 <span class="whitespace-nowrap font-medium text-morandi-ink">大溪老街站</span> 或 <span class="whitespace-nowrap font-medium text-morandi-ink">大溪總站</span>，再轉搭計程車約 8 分鐘抵達。</p>
+                        <p>• <strong>台灣鐵路：</strong>搭乘台鐵至 <span class="whitespace-nowrap font-medium text-morandi-ink">桃園火車站</span> 或 <span class="whitespace-nowrap font-medium text-morandi-ink">中壢火車站</span>，轉乘計程車約 30–35 分鐘即可抵達。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 面板 3：園區免費停車資訊 -->
+            <div class="bg-morandi-paper rounded-2xl shadow-soft border border-white overflow-hidden">
+                <button type="button" onclick="toggleAccordion('acc-parking')" class="w-full px-5 sm:px-7 py-4 sm:py-5 flex items-center justify-between text-left focus:outline-none hover:bg-white/60 transition">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-8 h-8 rounded-full bg-morandi-warm/15 text-morandi-warmDark flex items-center justify-center text-sm">🅿️</span>
+                        <span class="text-sm sm:text-base font-medium tracking-wider text-morandi-ink">飯店園區免費停車指引</span>
+                    </div>
+                    <svg id="icon-acc-parking" class="w-5 h-5 text-morandi-taupe transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="acc-parking" class="accordion-content">
+                    <div class="px-5 sm:px-7 pb-5 pt-2 text-xs sm:text-sm text-[#5a524c] space-y-2.5 border-t border-stone-100 leading-relaxed">
+                        <p>• 進入 <span class="whitespace-nowrap font-medium text-morandi-ink">大溪笠復威斯汀度假酒店</span> 大門後，請依現場禮賓人員指引停放於 <span class="whitespace-nowrap font-medium text-morandi-ink">第一停車場</span> 或 <span class="whitespace-nowrap font-medium text-morandi-ink">圓環停車場</span>。</p>
+                        <p>• 參與婚禮之賓客皆享有婚宴當日免費停車禮遇。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 & 5. 出席回函 RSVP (中英雙語標籤 + 純中文下拉選單 + 隱藏式 Iframe 無跳轉提交 + 空值無預填) -->
+    <section id="rsvp" class="py-20 px-5 sm:px-6 max-w-2xl mx-auto">
+        <div class="text-center mb-10">
+            <span class="text-xs uppercase tracking-[0.35em] text-morandi-sageDark font-eng font-semibold">Join Our Celebration</span>
+            <h2 class="font-eng text-4xl md:text-5xl font-normal text-morandi-ink mt-1 mb-2 tracking-wide">RSVP</h2>
+            <p class="text-xs sm:text-sm text-[#5a524c] tracking-wider">敬請撥冗填寫出席回函，讓我們為您準備席次與喜帖</p>
+            <div class="w-10 h-[1.5px] bg-morandi-warm mx-auto mt-4"></div>
+        </div>
+
+        <div class="bg-morandi-paper rounded-3xl p-6 sm:p-10 shadow-soft border border-white">
+            <!-- 隱藏式 Iframe -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+            <form id="weddingRsvpForm" 
+                  action="https://docs.google.com/forms/d/e/1FAIpQLSeGtgbJpZPws0ymnjNYb9n_GhnNVfi9YnVzP1ZsC5BlgHIoOA/formResponse" 
+                  method="POST" 
+                  target="hidden_iframe"
+                  onsubmit="handleFormSubmit(event)" 
+                  class="space-y-5">
+
+                <!-- 1. 姓名 NAME (entry.1144598929) -->
+                <div>
+                    <label for="entry_name" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-2">
+                        姓名 NAME <span class="text-morandi-warm">*</span>
+                    </label>
+                    <input type="text" name="entry.1144598929" id="entry_name" required value="" placeholder="請輸入您的真實姓名" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                </div>
+
+                <!-- 2. 電子信箱 EMAIL (entry.1670386680) -->
+                <div>
+                    <label for="entry_email" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-2">
+                        電子信箱 EMAIL <span class="text-morandi-warm">*</span>
+                    </label>
+                    <input type="email" name="entry.1670386680" id="entry_email" required value="" placeholder="請輸入您的常用 Email" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                </div>
+
+                <!-- 3. 與新人關係 RELATIONSHIP (entry.717697424) -->
+                <div>
+                    <label for="entry_relation" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-2">
+                        與新人關係 RELATIONSHIP <span class="text-morandi-warm">*</span>
+                    </label>
+                    <select name="entry.717697424" id="entry_relation" required class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                        <option value="" disabled selected>請選擇與新人的關係</option>
+                        <option value="男方家人親戚">男方家人親戚</option>
+                        <option value="男方好友">男方好友</option>
+                        <option value="男方同事">男方同事</option>
+                        <option value="女方家人親戚">女方家人親戚</option>
+                        <option value="女方好友">女方好友</option>
+                        <option value="女方同事">女方同事</option>
+                    </select>
+                </div>
+
+                <!-- 4. 是否出席 ATTENDANCE (entry.181804315) -->
+                <div>
+                    <label for="entry_attendance" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-2">
+                        是否出席 ATTENDANCE <span class="text-morandi-warm">*</span>
+                    </label>
+                    <select name="entry.181804315" id="entry_attendance" required onchange="handleAttendanceChange(this.value)" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                        <option value="" disabled selected>請選擇是否出席</option>
+                        <option value="出席，絕對到場!">出席，絕對到場!</option>
+                        <option value="不克出席，祝你們幸福!">不克出席，祝你們幸福!</option>
+                    </select>
+                </div>
+
+                <!-- 選擇「出席」時才顯示的中間題目區塊 (人數、飲食、兒童椅、喜帖地址) -->
+                <div id="attending_section" class="hidden space-y-5 pt-3 border-t border-dashed border-stone-200">
+                    <!-- 5. 參加午宴人數 GUESTS COUNT (entry.1221901509) -->
+                    <div>
+                        <label for="entry_guests" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-2">
+                            參加午宴人數 GUESTS COUNT <span class="text-morandi-warm">*</span>
+                        </label>
+                        <select name="entry.1221901509" id="entry_guests" onchange="handleGuestCountChange(this.value)" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                            <option value="" disabled selected>請選擇出席人數</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <!-- 人數 > 0 時顯示飲食需求與兒童椅 -->
+                    <div id="conditional_fields" class="hidden space-y-5">
+                        <!-- 6. 飲食需求 DIETARY REQUIREMENTS (entry.1349194582) - 完美對接 Google 表單「其他」選項 -->
+                        <div>
+                            <label class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-1">
+                                飲食需求 DIETARY REQUIREMENTS <span class="text-[11px] text-morandi-taupe font-normal">（可複選）</span>
+                            </label>
+                            <p class="text-[11px] text-[#7a7067] mb-2.5 leading-relaxed">
+                                我們餐點模式是西式半自助，每位貴賓都會有一份位上餐，若有素食需求或是不吃牛肉請勾選並填寫實際人數。
+                            </p>
+                            <!-- 實際傳送給 Google 表單的主欄位與「其他」附屬文字欄位 -->
+                            <input type="hidden" name="entry.1349194582" id="entry_diet" value="無限制">
+                            <input type="hidden" name="entry.1349194582.other_option_response" id="entry_diet_other" value="" disabled>
+
+                            <div class="space-y-2.5 bg-white p-4 rounded-xl border border-stone-200">
+                                <!-- 無限制 -->
+                                <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                    <input type="checkbox" id="diet_none" checked onchange="handleDietCheckbox('none')" class="w-4 h-4 accent-morandi-warm rounded cursor-pointer">
+                                    <span class="text-sm text-stone-800">無限制</span>
+                                </label>
+
+                                <!-- 不吃牛 + 人數 -->
+                                <div class="flex flex-wrap items-center justify-between gap-2 py-1 border-t border-stone-100 pt-2.5">
+                                    <label class="flex items-center space-x-3 cursor-pointer">
+                                        <input type="checkbox" id="diet_no_beef" onchange="handleDietCheckbox('no_beef')" class="w-4 h-4 accent-morandi-warm rounded cursor-pointer">
+                                        <span class="text-sm text-stone-800">不吃牛</span>
+                                    </label>
+                                    <div id="no_beef_count_wrap" class="hidden flex items-center space-x-2">
+                                        <span class="text-xs text-stone-500">人數：</span>
+                                        <input type="number" id="no_beef_count" min="1" max="10" value="1" oninput="updateDietHiddenValue()" class="w-16 px-2.5 py-1 text-sm text-center rounded-lg border border-stone-200 focus:outline-none focus:border-morandi-warm">
+                                        <span class="text-xs text-stone-500">位</span>
+                                    </div>
+                                </div>
+
+                                <!-- 素食 + 人數 -->
+                                <div class="flex flex-wrap items-center justify-between gap-2 py-1 border-t border-stone-100 pt-2.5">
+                                    <label class="flex items-center space-x-3 cursor-pointer">
+                                        <input type="checkbox" id="diet_veg" onchange="handleDietCheckbox('veg')" class="w-4 h-4 accent-morandi-warm rounded cursor-pointer">
+                                        <span class="text-sm text-stone-800">素食（全素／蛋奶素）</span>
+                                    </label>
+                                    <div id="veg_count_wrap" class="hidden flex items-center space-x-2">
+                                        <span class="text-xs text-stone-500">人數：</span>
+                                        <input type="number" id="veg_count" min="1" max="10" value="1" oninput="updateDietHiddenValue()" class="w-16 px-2.5 py-1 text-sm text-center rounded-lg border border-stone-200 focus:outline-none focus:border-morandi-warm">
+                                        <span class="text-xs text-stone-500">位</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 7. 是否需要兒童椅 HIGH CHAIR (entry.670440346) -->
+                        <div>
+                            <label for="entry_chair" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-2">
+                                是否需要兒童椅 HIGH CHAIR
+                            </label>
+                            <select name="entry.670440346" id="entry_chair" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                                <option value="" disabled selected>請選擇兒童椅需求</option>
+                                <option value="0">不需要</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 8. 喜帖寄送需求與地址 INVITATION ADDRESS (entry.1992615719) -->
+                    <div class="space-y-3">
+                        <label for="paper_invite_need" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase">
+                            喜帖需求 INVITATION PREFERENCE
+                        </label>
+                        <!-- 實際傳送給 Google 表單的隱藏欄位 -->
+                        <input type="hidden" name="entry.1992615719" id="entry_address" value="">
+
+                        <select id="paper_invite_need" onchange="handleInviteNeedChange(this.value)" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                            <option value="" disabled selected>請問是否需要寄送實體喜帖？</option>
+                            <option value="need_paper">需要實體喜帖（請填寫收件地址）</option>
+                            <option value="no_paper">不需要實體喜帖（響應環保，此網站即為電子喜帖）</option>
+                        </select>
+
+                        <!-- 選擇「需要實體喜帖」時顯示地址輸入框 -->
+                        <div id="paper_address_wrap" class="hidden pt-1">
+                            <input type="text" id="entry_address_input" value="" oninput="syncAddressValue()" placeholder="請填寫完整收件地址（含郵遞區號）" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. 給新人的祝福 WISHES & NOTES (entry.2135662868) -->
+                <div>
+                    <label for="entry_wishes" class="block text-xs font-medium tracking-wider text-morandi-ink uppercase mb-2">
+                        給新人的祝福 WISHES &amp; NOTES
+                    </label>
+                    <textarea name="entry.2135662868" id="entry_wishes" rows="3" placeholder="留下一句溫暖的祝福給建勛與乃瑄吧！" class="w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-morandi-warm/40 focus:border-morandi-warm text-sm text-stone-800 transition"></textarea>
+                </div>
+
+                <!-- 送出按鈕 -->
+                <div class="pt-4 text-center">
+                    <button type="submit" id="submit_btn" class="w-full sm:w-auto px-12 py-3.5 bg-morandi-warm hover:bg-morandi-warmDark text-white font-medium text-sm tracking-[0.25em] rounded-full shadow-glow transition duration-300 transform active:scale-95">
+                        確認送出出席回函
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 回函提交成功感謝視窗 -->
+    <div id="success_modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-morandi-paper rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border border-white transform scale-95 transition-transform duration-300">
+            <div class="w-16 h-16 bg-morandi-warmLight/70 rounded-full flex items-center justify-center mx-auto mb-5 text-morandi-warmDark">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="font-eng text-2xl text-morandi-ink font-medium">Thank You!</h3>
+            <p class="text-sm font-medium text-morandi-ink mt-2">已成功收到您的回函</p>
+            <p class="text-xs text-[#605850] mt-2 leading-relaxed">
+                衷心感謝您的祝福與回覆！我們期待在 2027 年 2 月 20 日元宵佳節與您溫暖相聚！
+            </p>
+            <button type="button" onclick="closeSuccessModal()" class="mt-6 w-full py-2.5 bg-morandi-sage hover:bg-morandi-sageDark text-white rounded-xl text-xs tracking-widest transition">
+                關閉視窗
+            </button>
+        </div>
+    </div>
+
+    <!-- 頁尾 Footer -->
+    <footer class="py-16 sm:py-20 bg-morandi-bg text-center border-t border-morandi-taupe/15 space-y-4">
+        <p class="font-eng text-2xl sm:text-3xl text-morandi-ink tracking-[0.14em] font-light">2027.02.20</p>
+        <p class="text-base sm:text-lg text-[#5a524c] tracking-[0.25em] font-normal">· 期待相見 ·</p>
+        <p class="font-eng text-lg sm:text-xl text-[#6e665f] tracking-wider font-normal">We can't wait to celebrate with you!</p>
+    </footer>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // 0. 防止手機雙指縮放與雙擊放大 (確保只能上下滑動) + 自動清除 GitHub README 殘留標題與文字
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+        document.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        window.addEventListener('DOMContentLoaded', function () {
+            // 若誤放於 GitHub README.md，自動隱藏 GitHub 產生的專案標題 H-H-Wedding 與殘留 DOCTYPE 純文字節點
+            document.querySelectorAll('h1, h2, p').forEach(function (el) {
+                const txt = (el.textContent || '').trim();
+                if (txt === 'H-H-Wedding' || txt === '<!DOCTYPE html>') {
+                    el.style.display = 'none';
+                }
+            });
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while ((node = walker.nextNode())) {
+                if (node.nodeValue && node.nodeValue.includes('<!DOCTYPE html>')) {
+                    node.nodeValue = node.nodeValue.replace('<!DOCTYPE html>', '');
+                }
+            }
+        });
+
+        // 1. 倒數計時器：倒數至 2027年2月20日 12:00
+        const weddingTargetDate = new Date("2027-02-20T12:00:00+08:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = weddingTargetDate - now;
+
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                if (daysEl) daysEl.innerText = String(days).padStart(3, '0');
+                if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
+                if (minutesEl) minutesEl.innerText = String(minutes).padStart(2, '0');
+                if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, '0');
+            } else {
+                if (daysEl) daysEl.innerText = "000";
+                if (hoursEl) hoursEl.innerText = "00";
+                if (minutesEl) minutesEl.innerText = "00";
+                if (secondsEl) secondsEl.innerText = "00";
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // 2. 交通指引摺疊面板 (Accordion)
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById("icon-" + id);
+            if (!content) return;
+            content.classList.toggle("open");
+            if (icon) {
+                icon.classList.toggle("rotate-180");
+            }
+        }
+
+        // 3. 智能表單條件顯示：選擇是否出席 & 人數 > 0 時顯示飲食需求與兒童椅
+        function handleAttendanceChange(val) {
+            const attendingSection = document.getElementById("attending_section");
+            const guestsSelect = document.getElementById("entry_guests");
+            const conditionalFields = document.getElementById("conditional_fields");
+            const dietHidden = document.getElementById("entry_diet");
+            const dietOtherHidden = document.getElementById("entry_diet_other");
+            const chairSelect = document.getElementById("entry_chair");
+            const addressHidden = document.getElementById("entry_address");
+            const addressInput = document.getElementById("entry_address_input");
+            const inviteNeedSelect = document.getElementById("paper_invite_need");
+            const paperWrap = document.getElementById("paper_address_wrap");
+
+            if (val === "出席，絕對到場!") {
+                attendingSection.classList.remove("hidden");
+                if (guestsSelect) guestsSelect.required = true;
+            } else {
+                // 若選擇不出席，中間題目全部隱藏並停用傳送，避免空值觸發 Google 表單選項驗證錯誤
+                attendingSection.classList.add("hidden");
+                if (guestsSelect) {
+                    guestsSelect.required = false;
+                    guestsSelect.selectedIndex = 0;
+                }
+                if (conditionalFields) conditionalFields.classList.add("hidden");
+                if (dietHidden) {
+                    dietHidden.value = "";
+                    dietHidden.disabled = true;
+                }
+                if (dietOtherHidden) {
+                    dietOtherHidden.value = "";
+                    dietOtherHidden.disabled = true;
+                }
+                if (chairSelect) chairSelect.selectedIndex = 0;
+                if (inviteNeedSelect) inviteNeedSelect.selectedIndex = 0;
+                if (paperWrap) paperWrap.classList.add("hidden");
+                if (addressInput) {
+                    addressInput.required = false;
+                    addressInput.value = "";
+                }
+                if (addressHidden) addressHidden.value = "";
+            }
+        }
+
+        function handleGuestCountChange(val) {
+            const conditionalFields = document.getElementById("conditional_fields");
+            const chairSelect = document.getElementById("entry_chair");
+            const count = parseInt(val, 10);
+
+            if (!isNaN(count) && count > 0) {
+                conditionalFields.classList.remove("hidden");
+                updateDietHiddenValue();
+            } else {
+                conditionalFields.classList.add("hidden");
+                if (chairSelect) chairSelect.selectedIndex = 0;
+            }
+        }
+
+        // 飲食需求複選與人數同步至 entry.1349194582
+        function handleDietCheckbox(type) {
+            const noneCb = document.getElementById("diet_none");
+            const noBeefCb = document.getElementById("diet_no_beef");
+            const vegCb = document.getElementById("diet_veg");
+            const noBeefWrap = document.getElementById("no_beef_count_wrap");
+            const vegWrap = document.getElementById("veg_count_wrap");
+
+            if (type === 'none' && noneCb.checked) {
+                noBeefCb.checked = false;
+                vegCb.checked = false;
+                noBeefWrap.classList.add("hidden");
+                vegWrap.classList.add("hidden");
+            } else if (type === 'no_beef' || type === 'veg') {
+                if (noBeefCb.checked || vegCb.checked) {
+                    noneCb.checked = false;
+                } else {
+                    noneCb.checked = true;
+                }
+                noBeefWrap.classList.toggle("hidden", !noBeefCb.checked);
+                vegWrap.classList.toggle("hidden", !vegCb.checked);
+            }
+            updateDietHiddenValue();
+        }
+
+        function updateDietHiddenValue() {
+            const noneCb = document.getElementById("diet_none");
+            const noBeefCb = document.getElementById("diet_no_beef");
+            const vegCb = document.getElementById("diet_veg");
+            const noBeefCount = document.getElementById("no_beef_count").value || 1;
+            const vegCount = document.getElementById("veg_count").value || 1;
+            const dietHidden = document.getElementById("entry_diet");
+            const dietOtherHidden = document.getElementById("entry_diet_other");
+
+            if (dietHidden) dietHidden.disabled = false;
+
+            let parts = [];
+            if (noBeefCb && noBeefCb.checked) {
+                parts.push(`不吃牛 ${noBeefCount}位`);
+            }
+            if (vegCb && vegCb.checked) {
+                parts.push(`素食 ${vegCount}位`);
+            }
+
+            if (parts.length === 0 || (noneCb && noneCb.checked)) {
+                // 選「無限制」時，直接傳送「無限制」，並停用「其他」文字欄
+                if (dietHidden) dietHidden.value = "無限制";
+                if (dietOtherHidden) {
+                    dietOtherHidden.value = "";
+                    dietOtherHidden.disabled = true;
+                }
+            } else {
+                // 勾選不吃牛或素食時，自動對應 Google 表單的「其他 (__other_option__)」並填入人數說明
+                if (dietHidden) dietHidden.value = "__other_option__";
+                if (dietOtherHidden) {
+                    dietOtherHidden.disabled = false;
+                    dietOtherHidden.value = parts.join("、");
+                }
+            }
+        }
+
+        // 喜帖寄送需求切換與同步至 entry.1992615719
+        function handleInviteNeedChange(val) {
+            const paperWrap = document.getElementById("paper_address_wrap");
+            const addressInput = document.getElementById("entry_address_input");
+            const addressHidden = document.getElementById("entry_address");
+
+            if (val === "need_paper") {
+                paperWrap.classList.remove("hidden");
+                addressInput.required = true;
+                addressHidden.value = addressInput.value.trim();
+            } else if (val === "no_paper") {
+                paperWrap.classList.add("hidden");
+                addressInput.required = false;
+                addressInput.value = "";
+                addressHidden.value = "不需要實體喜帖（響應環保，此網站即為電子喜帖）";
+            }
+        }
+
+        function syncAddressValue() {
+            const addressInput = document.getElementById("entry_address_input");
+            const addressHidden = document.getElementById("entry_address");
+            if (addressInput && addressHidden) {
+                addressHidden.value = addressInput.value.trim();
+            }
+        }
+
+        // 4. 隱藏式 Iframe 表單提交處理
+        let formSubmitted = false;
+
+        function handleFormSubmit() {
+            formSubmitted = true;
+            const submitBtn = document.getElementById("submit_btn");
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = "傳送中...";
+            }
+        }
+
+        function handleIframeLoad() {
+            if (formSubmitted) {
+                showSuccessModal();
+                const form = document.getElementById("weddingRsvpForm");
+                if (form) form.reset();
+                const attendingSection = document.getElementById("attending_section");
+                if (attendingSection) attendingSection.classList.add("hidden");
+                const conditionalFields = document.getElementById("conditional_fields");
+                if (conditionalFields) conditionalFields.classList.add("hidden");
+                const noBeefWrap = document.getElementById("no_beef_count_wrap");
+                if (noBeefWrap) noBeefWrap.classList.add("hidden");
+                const vegWrap = document.getElementById("veg_count_wrap");
+                if (vegWrap) vegWrap.classList.add("hidden");
+                const paperWrap = document.getElementById("paper_address_wrap");
+                if (paperWrap) paperWrap.classList.add("hidden");
+
+                const submitBtn = document.getElementById("submit_btn");
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "確認送出出席回函";
+                }
+                formSubmitted = false;
+            }
+        }
+
+        const hiddenIframe = document.getElementById("hidden_iframe");
+        if (hiddenIframe) {
+            hiddenIframe.addEventListener("load", handleIframeLoad);
+        }
+
+        function showSuccessModal() {
+            const modal = document.getElementById("success_modal");
+            if (!modal) return;
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                modal.classList.remove("opacity-0");
+                const inner = modal.querySelector("div");
+                if (inner) inner.classList.remove("scale-95");
+            }, 20);
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById("success_modal");
+            if (!modal) return;
+            modal.classList.add("opacity-0");
+            const inner = modal.querySelector("div");
+            if (inner) inner.classList.add("scale-95");
+            setTimeout(() => {
+                modal.classList.add("hidden");
+            }, 300);
+        }
+    </script>
+</body>
+</html>
